@@ -1,0 +1,77 @@
+import random
+
+# ==========================================
+# PART 1: MAJOR ARCANA
+# ==========================================
+
+major_arcana = [
+    "Le Mat", "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur",
+    "Le Pape", "L'Amoureux", "Le Chariot", "La Justice", "L'Ermite",
+    "La Roue de Fortune", "La Force", "Le Pendu", "L'Arcane sans nom",
+    "Tempérance", "Le Diable", "La Maison Dieu", "L'Étoile", "La Lune",
+    "Le Soleil", "Le Jugement", "Le Monde"
+]
+
+# ==========================================
+# PART 2: MINOR ARCANA
+# ==========================================
+
+values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Page", "Queen", "King", "Knight"]
+suits = ["Wands", "Cups", "Pentacles", "Swords"]
+
+minor_arcana_dict = {}
+card_id = 1
+
+# Generate the Minor Arcana dictionary using a nested loop
+for suit in suits:
+    for value in values:
+        card_name = value + " of " + suit
+        minor_arcana_dict[card_id] = card_name
+        card_id = card_id + 1
+
+# Convert dictionary values into a list for the extraction phase
+minor_arcana_list = list(minor_arcana_dict.values())
+
+
+# ==========================================
+# PART 3: USER INPUT & ERROR HANDLING
+# ==========================================
+
+print("Welcome to the Tarot Reading!\n")
+
+# Loop until the user provides a valid choice
+while True:
+    choice = input("Do you want to use only Major Arcana (type '1') or the Full Deck (type '2')? ")
+    
+    if choice == "1" or choice == "2":
+        break  # Valid input, exit the loop
+    else:
+        # Invalid input, the loop restarts
+        print("Invalid choice! Please type exactly '1' or '2'.\n")
+
+print("\nShuffling the deck according to your choice... \n")
+
+
+# ==========================================
+# PART 4: DRAWING LOGIC
+# ==========================================
+
+if choice == "1":
+    # Draw 3 cards from Major Arcana only
+    draw = random.sample(major_arcana, 3)
+else:
+    # Combine both lists to get the full 78-card deck
+    full_deck = major_arcana + minor_arcana_list
+    draw = random.sample(full_deck, 3)
+
+
+# ==========================================
+# PART 5: DISPLAY THE RESULTS
+# ==========================================
+
+positions = ["First card", "Second card", "Third card"]
+
+for i in range(3):
+    print(positions[i] + ": " + draw[i])
+
+print("\nThe reading is complete. May the stars be in your favor!")
