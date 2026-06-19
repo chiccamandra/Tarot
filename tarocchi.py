@@ -9,7 +9,7 @@ major_arcana = [
     "Le Soleil", "Le Jugement", "Le Monde"
 ]
 
-print("Welcome, Chiccamandra. Shuffling the deck and drawing three cards for you... \n")
+print("Welcome! Shuffling the deck and drawing three cards for you... \n")
 
 # 2. Draw 3 unique cards (no duplicates)
 draw = random.sample(major_arcana, 3)
